@@ -4,4 +4,10 @@ out = "out"
 libs = ["lib"]
 remmapings = ["@openzeppelin/=lib/openzeppelin-contracts"]
 
+[rpc_endpoints]
+sepolia = "${SEPOLIA_RPC}"
+
+[etherscan]
+sepolia={ key = "${ETHERSCAN_API}"}
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
