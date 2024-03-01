@@ -5,16 +5,18 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyToken is ERC20, Ownable {
-    uint256 public stakingRate;
+    // The annual staking rate in percentage
+    uint8 public stakingRate;
     bool public stakingEnabled;
 
     mapping(address => uint256) public staked;
     mapping(address => uint256) private stakedFromTS;
 
-    constructor(address initialOwner)
+    constructor(address initialOwner, uint8 _stakingRate)
         ERC20("MyToken", "MTK")
         Ownable(initialOwner)
     {
+        stakingRate = _stakingRate;
         _mint(initialOwner, 1000000 * (10 ** uint256(decimals())));
     }
 
@@ -45,13 +47,5 @@ contract MyToken is ERC20, Ownable {
         uint256 rewards = (staked[msg.sender] * secondsStaked * stakingRate / 100) / ONE_YEAR;
         stakedFromTS[msg.sender] = block.timestamp;
         _mint(msg.sender, rewards);
-    }
-
-    function setStakingRate(uint256 newRate) external onlyOwner {
-        stakingRate = newRate;
-    }
-
-    function switchStaking() external onlyOwner {
-        stakingEnabled = !stakingEnabled;
     }
 }
