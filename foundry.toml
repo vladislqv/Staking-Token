@@ -6,6 +6,7 @@ remmapings = ["@openzeppelin/=lib/openzeppelin-contracts"]
 
 [rpc_endpoints]
 sepolia = "${SEPOLIA_RPC}"
+bsc = "${BSC_RPC}"
 
 [etherscan]
 sepolia={ key = "${ETHERSCAN_API}"}
