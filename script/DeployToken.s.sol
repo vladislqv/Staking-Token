@@ -7,7 +7,7 @@ import {MyToken} from "../src/Token.sol";
 contract DeployToken is Script {
     function run() public {
         vm.broadcast();
-        MyToken token = new MyToken(msg.sender);
+        MyToken token = new MyToken(msg.sender, 5);
         console.log("Token deployed at:", address(token));
     }
 }
